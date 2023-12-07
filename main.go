@@ -35,7 +35,7 @@ func main() {
 }
 
 func commandProvider() map[string]cliCommand {
-
+	//command callback functions, will be used as closures in the main func.
 	commandHelp := func() error {
 		fmt.Println("Welcome to Pokedex!")
 		fmt.Println("Usage:")
@@ -51,7 +51,7 @@ func commandProvider() map[string]cliCommand {
 		os.Exit(0)
 		return nil
 	}
-
+	//returning the commands as map
 	return map[string]cliCommand{
 		"help": {
 			name:        "help",
