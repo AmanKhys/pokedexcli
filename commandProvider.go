@@ -3,8 +3,6 @@ package main
 func commandProvider() map[string]cliCommand {
 	//command callback functions, will be used as closures in the main func.
 
-	urlString = "https://pokeapi.co/api/v2/location-area/"
-
 	//returning the commands as map
 	return map[string]cliCommand{
 		"help": {
@@ -25,7 +23,7 @@ func commandProvider() map[string]cliCommand {
 		"bmap": {
 			name:        "bmap",
 			description: "prints previous twenty locations",
-			//			callback:    commandBmap,
+			callback:    commandBmap,
 		},
 	}
 }

@@ -6,24 +6,19 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"reflect"
 )
 
-var makeFirstString bool = true
-var urlString string
-//var previous *string
-//var next *string
-
-func setUrlString() {
-	if makeFirstString {
-		urlString = "https://pokeapi.co/api/v2/location-area"
+func commandBmap() error {
+	fmt.Println("entered bmap")
+	if reflect.TypeOf(urlString) == nil {
+		fmt.Println("there are no more preivous location areas")
+		fmt.Println("You're looking into non-existant path")
+		makeFirstString = true
+		setUrlString()
+		return nil
 	}
-	makeFirstString = false
-
-}
-
-func commandMap() error {
-	setUrlString()
-	fmt.Println("here are the next twenty locaiton areas in pokemon world")
+	fmt.Println("here are the next twenty locaiton previous areas in pokemon world")
 	fmt.Println("taken from: ", urlString)
 	res, err := http.Get(urlString)
 	if err != nil {
@@ -49,17 +44,17 @@ func commandMap() error {
 	//update the urlString so that the next map command shows the next twenty locations
 	fmt.Println()
 	fmt.Println(urlString)
-	urlString = unmarshalledBody.Next
+	urlString = *unmarshalledBody.Previous
+//	*previous = *unmarshalledBody.Previous //using *unmarshalled since the .Previous filed is a pointer to a string in config
 //	*next = unmarshalledBody.Next
-//	*previous = *unmarshalledBody.Previous
 	fmt.Println()
 	fmt.Println(urlString)
 
 	for _, value := range unmarshalledBody.Results {
 		fmt.Println(value.Name)
 	}
-//	urlString = *next
-//	next = nil
-//	*previous = urlString
+//	urlString = *previous
+//	previous = nil
+//	*next = urlString
 	return nil
 }

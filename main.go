@@ -2,11 +2,11 @@ package main
 
 import (
 	"bufio"
-//	"encoding/json"
+	//	"encoding/json"
 	"fmt"
-//	"io"
-//	"log"
-//	"net/http"
+	//	"io"
+	//	"log"
+	//	"net/http"
 	"os"
 )
 
@@ -26,11 +26,7 @@ type config struct {
 	} `json:"results"`
 }
 
-var urlString string
-
-
 func main() {
-
 	fmt.Println("Hello World!")
 	scanner := bufio.NewScanner(os.Stdin)
 	for {
@@ -54,4 +50,3 @@ func main() {
 	}
 
 }
-
